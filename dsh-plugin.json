@@ -1,0 +1,39 @@
+{
+  "$schema": "https://dsh-std.dev/schemas/dsh-plugin-0.15.json",
+  "manifestVersion": "0.15",
+  "id": "loop.plugin",
+  "name": "dsh-loop",
+  "version": "0.1.0",
+  "facets": {
+    "host": {
+      "entry": "./index.js",
+      "apiVersion": "v1alpha1"
+    }
+  },
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "commands.dsh/v1alpha1",
+        "kind": "Command"
+      }
+    ]
+  },
+  "permissions": [
+    {
+      "name": "commands.invoke",
+      "scope": "loop.loop",
+      "reason": "The /loop command runs only when the user invokes it (arm, stop, resume, status)"
+    }
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "id": "loop.loop",
+        "title": "Loop",
+        "description": "/loop <message> resends the message every time the agent stops; /loop off stops, /loop on resumes, /loop status reports the round count"
+      }
+    ]
+  },
+  "subscriptions": [],
+  "license": "MIT"
+}

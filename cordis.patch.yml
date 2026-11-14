@@ -1,0 +1,16 @@
+# dsh-loop bundle patch: mount the plugin as a profile row.
+#
+# Override by id in the profile's own cordis.patch.yml user layer — do NOT
+# insert a second same-id row. Omitted keys use the plugin defaults:
+#   delayMs: 250          wait before each automatic send
+#   maxRounds: 0          unlimited (the point of /loop)
+#   sourceKind: 'loop'    non-'user' keeps rounds out of the transcript
+#   stopOnAbort: true     an esc interrupt pauses instead of resending
+#   continueOnError: false  a failed turn pauses (dsh-turn-retry owns retries)
+#   notices: true         toasts on start / pause / stop
+#   notifyEach: false     toast on every automatic send
+#   footer: true          `↻ loop N` footer field while active
+- insert:
+    - id: loop
+      name: 'dsh-loop'
+      config: {}
